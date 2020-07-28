@@ -25,9 +25,11 @@
     <modules>
         <module>a-study-redis-common</module>
         <module>b-study-redis-basis</module>
+        <module>c-study-redis-jedis</module>
+        <module>d-study-redis-redisson</module>
+        <module>e-study-redis-lettuce</module>
+        <module>f-study-redis-template</module>
     </modules>
-
-
 
     <build>
         <plugins>
@@ -41,17 +43,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            -->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
