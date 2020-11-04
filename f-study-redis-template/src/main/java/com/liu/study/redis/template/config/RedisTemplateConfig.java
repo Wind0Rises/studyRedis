@@ -29,6 +29,12 @@ public class RedisTemplateConfig {
      * 如果使用默认的RedisTemplate，默认使用JdkSerializationRedisSerializer，这个序列化会在key和value前后加上一些字符。
      * 所以要使用StringRedisSerializer.
      *
+     * redisConnectionFactory：在Spring Boot1.0用的是JedisConnectionFactory、在Spring Boot2.0以后用的是LettuceConnectionFactory。
+     * RedisConnectionFactory是Spring Boot自动配置的。详情可见：JedisConnectionConfiguration
+     *
+     * 具体可见：{@link org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration}
+     *         {@link org.springframework.boot.autoconfigure.data.redis.JedisConnectionConfiguration}
+     *
      * @param redisConnectionFactory
      * @return
      */
