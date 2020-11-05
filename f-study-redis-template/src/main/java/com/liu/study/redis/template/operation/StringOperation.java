@@ -23,6 +23,9 @@ public class StringOperation {
 
     public void testExpire() {
         redisTemplate.expire("first:redis:lie", 23, TimeUnit.SECONDS);
+
+        // redisTemplate.opsForValue();
+        // redisTemplate.boundValueOps();
     }
 
 }
