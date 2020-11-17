@@ -33,6 +33,7 @@
         <module>d-study-redis-redisson</module>
         <module>e-study-redis-lettuce</module>
         <module>f-study-redis-template</module>
+        <module>g-study-redis-lock</module>
     </modules>
 
     <build>
