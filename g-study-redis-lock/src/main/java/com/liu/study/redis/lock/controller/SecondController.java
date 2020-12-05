@@ -1,5 +1,7 @@
 package com.liu.study.redis.lock.controller;
 
+import com.liu.study.redis.lock.second.SecondRedisLock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,4 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/second")
 public class SecondController {
+
+    @Autowired
+    private SecondRedisLock secondRedisLock;
+
+    @RequestMapping("/lock")
+    public String lock() {
+        Boolean result = secondRedisLock.testLunLock(1000L);
+        if (result) {
+            return "success";
+        }
+        return "error";
+    }
+
 }

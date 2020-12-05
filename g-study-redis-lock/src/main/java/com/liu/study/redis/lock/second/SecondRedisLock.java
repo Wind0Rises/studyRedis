@@ -16,16 +16,25 @@ import java.util.Arrays;
 @Service
 public class SecondRedisLock {
 
+    /**
+     * 锁。
+     */
     private static final String LOCK_PREFIX = "concurrent.test.redis.lock";
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 上锁。
+     * @param releaseTime
+     * @return
+     */
     public Boolean testLunLock(long releaseTime) {
-        DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript();
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript();
         redisScript.setLocation(new ClassPathResource("LuaLock.lua"));
-        Boolean execute = stringRedisTemplate.execute(redisScript, Arrays.asList(LOCK_PREFIX), Thread.currentThread().getName());
-        return execute;
+        Long result = stringRedisTemplate.execute(redisScript, Arrays.asList(LOCK_PREFIX), Thread.currentThread().getName(), releaseTime);
+        System.out.println(result);
+        return result > 0;
     }
 
 }
