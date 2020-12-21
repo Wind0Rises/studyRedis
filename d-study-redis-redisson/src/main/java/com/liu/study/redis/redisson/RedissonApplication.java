@@ -1,5 +1,6 @@
 package com.liu.study.redis.redisson;
 
+import org.redisson.RedissonRedLock;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RedissonApplication {
 
     public static void main(String[] args) {
-
+        // RedissonRedLock lock = RedissonRedLock.
     }
 
 }
