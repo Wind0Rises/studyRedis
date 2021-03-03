@@ -6,8 +6,6 @@ import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * redis：对数据结构为List的操作。
  *
