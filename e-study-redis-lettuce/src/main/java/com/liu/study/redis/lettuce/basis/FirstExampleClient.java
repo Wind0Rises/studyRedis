@@ -15,26 +15,69 @@ import java.time.Duration;
  */
 public class FirstExampleClient {
 
+    static final String REDIS_HOST = "10.250.43.166";
+
+    static final boolean IS_AUTH = true;
+
+    static final String REDIS_PASSWORD = "3DGiuazc7wkAppV3";
+
     /**
      *
      * @param args
      */
     public static void main(String[] args) throws Exception {
+
+        /**
+         * 直接构建。
+         */
+        directBuild();
+
+
+        /**
+         *
+         */
+        builderModelBuild();
+
+
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    public static void directBuild() throws Exception {
         /**
          * RedisURI：直接构建。
          */
         Duration duration = Duration.ofSeconds(60L);
-        RedisURI redisURI = new RedisURI("192.168.10.221", 6379, duration);
+        RedisURI redisURI = new RedisURI(REDIS_HOST, 6379, duration);
+        if (IS_AUTH) {
+            redisURI.setPassword(REDIS_PASSWORD);
+        }
         getData(redisURI);
+    }
 
+
+    /**
+     * RedisURI建造者模式
+     * @throws Exception
+     */
+    public static void builderModelBuild() throws Exception {
         /**
          * RedisURI：RedisURI建造者模式。
          */
+        Duration duration = Duration.ofSeconds(60L);
         RedisURI redisURIBuild = RedisURI.builder()
-                .withHost("192.168.10.221")
+                .withHost(REDIS_HOST)
                 .withPort(6379).withTimeout(duration).build();
         getData(redisURIBuild);
+    }
 
+    /**
+     * 其他配置
+     * @throws Exception
+     */
+    public static void otherBuild() throws Exception {
         /**
          * URI语法：
          *      单机：
@@ -58,11 +101,18 @@ public class FirstExampleClient {
          *
          *
          */
-        URI uri = URI.create("redis://192.168.10.221:6379");
+        URI uri = URI.create("redis://" + REDIS_HOST + ":6379");
         RedisURI redisURISpecial = RedisURI.create(uri);
         getData(redisURISpecial);
     }
 
+
+    /**
+     * 获取数据。
+     *
+     * @param redisURI
+     * @throws Exception
+     */
     private static void getData(RedisURI redisURI) throws Exception {
         RedisClient redisClient = RedisClient.create(redisURI);
         StatefulRedisConnection<String, String> connect = redisClient.connect();

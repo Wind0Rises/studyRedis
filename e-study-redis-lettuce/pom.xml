@@ -27,5 +27,10 @@
             <artifactId>lettuce-core</artifactId>
             <version>5.3.5.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.liu.study.redis</groupId>
+            <artifactId>a-study-redis-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

@@ -10,7 +10,10 @@ import java.io.File;
 
 /**
  *
- * Redisson配置。
+ * Redisson配置——示例。
+ *
+ *
+ * RedissonClient:主Redisson接口，用于通过同步/异步接口访问所有Redisson对象。
  *
  *
  * Redssion的缺点：
@@ -24,10 +27,20 @@ import java.io.File;
  */
 public class RedissonConfigDemo {
 
+    static final String REDIS_HOST = "10.250.43.166";
+
+    static final boolean IS_AUTH = true;
+
+    static final String REDIS_PASSWORD = "3DGiuazc7wkAppV3";
+
     public static void main(String[] args) {
         RedissonClient redissonClient = programConfigForSingleton();
-        RBucket<String> bucket = redissonClient.getBucket("test:set");
-        bucket.set("lise");
+
+        /**
+         * TODO：为啥main线程执行完成以后，进程没有结束？？？
+         */
+
+        redissonClient.shutdown();
     }
 
     /**
@@ -36,8 +49,8 @@ public class RedissonConfigDemo {
     public static RedissonClient programConfigForSingleton() {
         Config config = new Config();
         config.useSingleServer()
-                .setAddress("redis://redis-9c411c2-dcs-scxe.dcs.huaweicloud.com:6379")
-                .setPassword("pacf4d99g3kTCGGS");
+                .setAddress("redis://" + REDIS_HOST + ":6379")
+                .setPassword(REDIS_PASSWORD);
 
         RedissonClient redissonClient = Redisson.create(config);
         return redissonClient;
